@@ -95,7 +95,7 @@ public class MultiWellExperiment <T> {
                 Step();
             }
         }
-//        win.Close();
+        win.Close();
     }
 
     /**

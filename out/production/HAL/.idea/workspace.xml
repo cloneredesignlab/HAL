@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f87e106a-bc6a-4b51-a3ba-2fda9d1aabe0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HAL/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HAL/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HAL/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HAL/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../jupyter/.ipynb_checkpoints/ABC4PloidyEnergyModel-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../../jupyter/.ipynb_checkpoints/ABC4PloidyEnergyModel-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../jupyter/.ipynb_checkpoints/CLONEID_applicationExample-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../../jupyter/.ipynb_checkpoints/CLONEID_applicationExample-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../jupyter/ABC4PloidyEnergyModel.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../../jupyter/ABC4PloidyEnergyModel.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../jupyter/CLONEID_applicationExample.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../../jupyter/CLONEID_applicationExample.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Examples/GrowOrGo_PloidyEnergy/GrowOrGo_PloidyEnergy.java" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/GrowOrGo_PloidyEnergy/GrowOrGo_PloidyEnergy.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,6 +12,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
   </component>
   <component name="ProjectId" id="1On77M1cQ5TB1i1MSprLMAinbaV" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -45,6 +45,7 @@
     <configuration name="GrowOrGo_PloidyEnergy" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Examples.GrowOrGo_PloidyEnergy.GrowOrGo_PloidyEnergy" />
       <module name="HAL" />
+      <option name="PROGRAM_PARAMETERS" value="One-well" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="Examples.GrowOrGo_PloidyEnergy.*" />
@@ -94,11 +95,6 @@
           <url>file://$PROJECT_DIR$/Framework/Tools/FileIO.java</url>
           <line>53</line>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Examples/GrowOrGo_PloidyEnergy/GrowOrGo_PloidyEnergy.java</url>
-          <line>49</line>
-          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
