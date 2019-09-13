@@ -1,9 +1,9 @@
 package Testing;
 
-import HAL.GridsAndAgents.PDEGrid1D;
-import HAL.GridsAndAgents.PDEGrid2D;
-import HAL.GridsAndAgents.PDEGrid3D;
-import HAL.Interfaces.*;
+import Framework.GridsAndAgents.PDEGrid1D;
+import Framework.GridsAndAgents.PDEGrid2D;
+import Framework.GridsAndAgents.PDEGrid3D;
+import Framework.Interfaces.*;
 
 import static Testing.UnitTester.*;
 
@@ -17,7 +17,7 @@ public class PDETests {
             grid.Update();
         } while (dif > steadyState);
         for (int i = 0; i < grid.xDim; i++) {
-            AssertEqual(assertID,AnswerFn.Eval(i + 0.5), grid.Get(i), errorTol);
+            AssertEqual(assertID,AnswerFn.DoubleToDouble(i + 0.5), grid.Get(i), errorTol);
         }
     }
     static void SteadyStateAssertionCheck2D(String assertID,PDEGrid2D grid, double steadyState, double errorTol, VoidFunction SetState, Doubles2DDouble AnswerFn) {

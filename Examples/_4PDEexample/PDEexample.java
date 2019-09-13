@@ -1,15 +1,15 @@
 package Examples._4PDEexample;
 
-import HAL.GridsAndAgents.AgentGrid2D;
-import HAL.GridsAndAgents.AgentSQ2Dunstackable;
-import HAL.GridsAndAgents.PDEGrid2D;
-import HAL.Gui.GridWindow;
-import HAL.Gui.UIGrid;
-import HAL.Rand;
-import HAL.Util;
+import Framework.GridsAndAgents.AgentGrid2D;
+import Framework.GridsAndAgents.AgentSQ2Dunstackable;
+import Framework.GridsAndAgents.PDEGrid2D;
+import Framework.Gui.GridWindow;
+import Framework.Gui.UIGrid;
+import Framework.Rand;
+import Framework.Util;
 
-import static HAL.Util.HeatMapRGB;
-import static HAL.Util.RGB;
+import static Framework.Util.HeatMapRGB;
+import static Framework.Util.RGB;
 
 
 class SrcOrSink extends AgentSQ2Dunstackable<PDEexample>{
@@ -58,7 +58,7 @@ public class PDEexample extends AgentGrid2D<SrcOrSink> {
         for (SrcOrSink srcOrSink : this) {
             srcOrSink.Reaction();
         }
-        diff.Advection(advectionX,advectionY,0);
+        diff.Advection(advectionX,advectionY);
         double drate=(Math.sin(stepI*1.0/250)+1)*0.05;
         diff.Diffusion(drate);
         diff.Update();

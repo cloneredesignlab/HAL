@@ -1,7 +1,7 @@
 package Testing.OldTests;
 
-import HAL.Gui.GridWindow;
-import HAL.Util;
+import Framework.Gui.GridWindow;
+import Framework.Util;
 
 public class HsLuvTest {
     public static void main(String[] args) {

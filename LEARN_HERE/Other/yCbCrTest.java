@@ -1,8 +1,8 @@
 package LEARN_HERE.Other;
 
-import HAL.Gui.GridWindow;
+import Framework.Gui.GridWindow;
 
-import static HAL.Util.CbCrPlaneColor;
+import static Framework.Util.CbCrPlaneColor;
 
 /**
  * Created by Rafael on 10/12/2017.

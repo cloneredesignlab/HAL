@@ -1,8 +1,8 @@
 package Testing.OldTests;
 
-import HAL.Gui.GridWindow;
+import Framework.Gui.GridWindow;
 
-import static HAL.Util.HeatMapJet;
+import static Framework.Util.HeatMapJet;
 
 public class JetTest {
     public static void main(String[] args) {

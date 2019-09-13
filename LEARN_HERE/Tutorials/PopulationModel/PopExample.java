@@ -1,6 +1,6 @@
 package LEARN_HERE.Tutorials.PopulationModel;
 
-import HAL.Rand;
+import Framework.Rand;
 
 public abstract class PopExample {
     Rand rng=new Rand();

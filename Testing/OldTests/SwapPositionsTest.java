@@ -1,11 +1,11 @@
 package Testing.OldTests;
 
 
-import HAL.GridsAndAgents.AgentGrid2D;
-import HAL.GridsAndAgents.AgentSQ2Dunstackable;
-import HAL.Gui.GridWindow;
+import Framework.GridsAndAgents.AgentGrid2D;
+import Framework.GridsAndAgents.AgentSQ2Dunstackable;
+import Framework.Gui.GridWindow;
 
-import static HAL.Util.RGB;
+import static Framework.Util.RGB;
 
 class SwapMe extends AgentSQ2Dunstackable<SwapPositionsTest>{
     int color;

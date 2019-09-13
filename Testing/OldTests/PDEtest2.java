@@ -1,8 +1,8 @@
 package Testing.OldTests;
 
-import HAL.GridsAndAgents.PDEGrid2D;
-import HAL.Gui.GridWindow;
-import HAL.Util;
+import Framework.GridsAndAgents.PDEGrid2D;
+import Framework.Gui.GridWindow;
+import Framework.Util;
 
 public class PDEtest2 {
     public static void main(String[] args) {

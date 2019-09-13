@@ -1,7 +1,7 @@
 package Testing.OldTests;
 
-import HAL.Gui.UIGrid;
-import HAL.Gui.UIWindow;
+import Framework.Gui.UIGrid;
+import Framework.Gui.UIWindow;
 
 /**
  * Created by rafael on 7/1/17.

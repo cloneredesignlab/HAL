@@ -1,9 +1,9 @@
 package LEARN_HERE.Agents;
 
 
-import HAL.Tools.MultiWellExperiment.MultiWellExperiment;
+import Framework.Tools.MultiWellExperiment.MultiWellExperiment;
 
-import static HAL.Util.*;
+import static Framework.Util.*;
 
 public class MultiwellExample{
     public static void StepModel(BirthDeath model,int iWell){
@@ -20,7 +20,8 @@ public class MultiwellExample{
         for (BirthDeath model : models) {
             model.Setup(2);
         }
-        MultiWellExperiment<BirthDeath> expt=new MultiWellExperiment<BirthDeath>(3,2,models,x,y, 5, WHITE, MultiwellExample::StepModel,MultiwellExample::DrawModel);
+        MultiWellExperiment<BirthDeath> expt=new MultiWellExperiment<BirthDeath>(3,2,models,x,y, 5,
+                WHITE, MultiwellExample::StepModel,MultiwellExample::DrawModel);
         //USE THE S KEY TO SAVE THE STATE, AND THE L KEY TO LOAD THE STATE
         expt.Run(200,false,100);
     }

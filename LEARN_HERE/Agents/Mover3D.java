@@ -1,10 +1,10 @@
 package LEARN_HERE.Agents;
 
-import HAL.GridsAndAgents.AgentGrid3D;
-import HAL.GridsAndAgents.AgentSQ3Dunstackable;
-import HAL.Gui.GridWindow;
-import HAL.Gui.OpenGL3DWindow;
-import HAL.Util;
+import Framework.GridsAndAgents.AgentGrid3D;
+import Framework.GridsAndAgents.AgentSQ3Dunstackable;
+import Framework.Gui.GridWindow;
+import Framework.Gui.OpenGL3DWindow;
+import Framework.Util;
 
 import java.util.Random;
 

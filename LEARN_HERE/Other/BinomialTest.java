@@ -1,6 +1,6 @@
 package LEARN_HERE.Other;
 
-import HAL.Rand;
+import Framework.Rand;
 
 /**
  * Created by Rafael on 7/20/2017.

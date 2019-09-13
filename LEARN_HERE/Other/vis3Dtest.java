@@ -1,9 +1,9 @@
 package LEARN_HERE.Other;
 
-import HAL.Gui.OpenGL3DWindow;
+import Framework.Gui.OpenGL3DWindow;
 
-import static HAL.Util.GenCirclePoints;
-import static HAL.Util.RGB;
+import static Framework.Util.GenCirclePoints;
+import static Framework.Util.RGB;
 
 /**
  * Created by bravorr on 6/16/17.

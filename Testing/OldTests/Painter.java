@@ -1,12 +1,12 @@
 package Testing.OldTests;
 
-import HAL.Gui.GridWindow;
-import HAL.Interfaces.KeyResponse;
+import Framework.Gui.GridWindow;
+import Framework.Interfaces.KeyResponse;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import static HAL.Util.*;
+import static Framework.Util.*;
 
 public class Painter extends GridWindow {
     public Painter(String title, int xDim, int yDim, int scaleFactor) {

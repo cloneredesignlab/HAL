@@ -1,15 +1,15 @@
 package Examples.GameOfLife;
 
-import HAL.GridsAndAgents.AgentGrid2D;
-import HAL.GridsAndAgents.AgentSQ2Dunstackable;
-import HAL.Gui.UIGrid;
-import HAL.Gui.UILabel;
-import HAL.Gui.UIWindow;
+import Framework.GridsAndAgents.AgentGrid2D;
+import Framework.GridsAndAgents.AgentSQ2Dunstackable;
+import Framework.Gui.UIGrid;
+import Framework.Gui.UILabel;
+import Framework.Gui.UIWindow;
 
 import java.util.Random;
 
 import static Examples.GameOfLife.GOLGrid.*;
-import static HAL.Util.*;
+import static Framework.Util.*;
 
 /**
  * Created by rafael on 4/16/17.

@@ -1,14 +1,14 @@
 package Examples._2StemCellExample;
-import HAL.GridsAndAgents.AgentSQ2Dunstackable;
-import HAL.GridsAndAgents.AgentGrid2D;
-import HAL.Gui.*;
-import HAL.Tools.FileIO;
-import HAL.Rand;
-import HAL.Util;
+import Framework.GridsAndAgents.AgentSQ2Dunstackable;
+import Framework.GridsAndAgents.AgentGrid2D;
+import Framework.Gui.*;
+import Framework.Tools.FileIO;
+import Framework.Rand;
+import Framework.Util;
 
 import java.util.Arrays;
 
-import static HAL.Util.RGB;
+import static Framework.Util.RGB;
 
 class CACell extends AgentSQ2Dunstackable<StemCellCA> {
     int divs;
@@ -71,8 +71,6 @@ class CACell extends AgentSQ2Dunstackable<StemCellCA> {
 
 class StemCellCA extends AgentGrid2D<CACell> {
     static final int WHITE =RGB(1,1,1),BLACK=RGB(0,0,0), RED =RGB(1,0,0);
-    private static UIWindow visModel;
-    private static GifMaker test;
     double DIV_PROB;
     double DEATH_PROB;
     double STEM_DIV_PROB;
@@ -127,7 +125,6 @@ class StemCellCA extends AgentGrid2D<CACell> {
             //displays the current tick
             tickLabel.SetText("Timestep"+i);
             popLabel.SetText("Population "+ Pop());
-            //test.AddFrame(visModel);
         }
     }
 
@@ -157,7 +154,7 @@ class StemCellCA extends AgentGrid2D<CACell> {
         win.AddCol(0, new UIButton("Run",true,(clickEvent)->{//inline function defines what happens when the run button is clicked
             //greys out the menu gui while the model is running
             win.GreyOut(true);
-            visModel=new UIWindow("StemCellCA",false,(closeEvent)->{//guiwindow inline function defines what happens when the agent visualization gui is closed
+            UIWindow visGui=new UIWindow("StemCellCA",false,(closeEvent)->{//guiwindow inline function defines what happens when the agent visualization gui is closed
                 win.GreyOut(false);//allow interaction with the menu gui again
                 if(runGrid.outFile!=null) {
                     runGrid.outFile.Close();//make sure to close the file, even if execution is cut off
@@ -166,15 +163,13 @@ class StemCellCA extends AgentGrid2D<CACell> {
                 runGrid.RUN_DURATION=0;//stop the model if the visualization is closed
             });
             //visGui contains a label that displays the tick and another that displays the population
-            visModel.AddCol(0, tickLabel);
-            visModel.AddCol(1, popLabel);
-            visModel.AddCol(0, vis);
+            visGui.AddCol(0, tickLabel);
+            visGui.AddCol(1, popLabel);
+            visGui.AddCol(0, vis);
             runGrid.Init(win.GetDouble("DIV_PROB"),win.GetDouble("DEATH_PROB"),win.GetDouble("STEM_DIV_PROB"),win.GetInt("MAX_DIVS"),win.GetInt("TICK_PAUSE"),win.GetInt("RUN_TICKS"),win.GetString("OUTPUT_FILE"),win.GetBool("Record"),vis,tickLabel,popLabel,win);
-            visModel.RunGui();
-            test=new GifMaker("test.gif",10,true);
+            visGui.RunGui();
             runGrid.Run();
-            test.Close();
-            visModel.Close();
+            visGui.Close();
         }));
         //starts the main gui
         win.RunGui();

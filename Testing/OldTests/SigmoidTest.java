@@ -1,8 +1,8 @@
 package Testing.OldTests;
 
-import HAL.Gui.GridWindow;
-import HAL.Gui.UIGrid;
-import HAL.Util;
+import Framework.Gui.GridWindow;
+import Framework.Gui.UIGrid;
+import Framework.Util;
 
 /**
  * Created by rafael on 9/7/17.

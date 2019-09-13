@@ -1,10 +1,10 @@
 package Testing.OldTests;
 
-import HAL.GridsAndAgents.PDEGrid2D;
-import HAL.Gui.UIGrid;
-import HAL.Gui.UIWindow;
-import HAL.Gui.TickTimer;
-import HAL.Util;
+import Framework.GridsAndAgents.PDEGrid2D;
+import Framework.Gui.UIGrid;
+import Framework.Gui.UIWindow;
+import Framework.Gui.TickTimer;
+import Framework.Util;
 
 /**
  * Created by bravorr on 7/21/17.
@@ -60,7 +60,7 @@ public class ConvectionTest {
                 return Util.HeatMapRBG(Util.ScaleMinToMax(val, (double) 0, (double) 1));
             });
             //g.ConvInhomogeneousSwap(xVels,yVels);
-            g.Advection(0.001,0.001,0);
+            g.Advection(0.001,0.001);
         }
         win.Close();
     }

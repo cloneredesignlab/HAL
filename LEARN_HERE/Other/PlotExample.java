@@ -1,8 +1,8 @@
 package LEARN_HERE.Other;
 
-import HAL.Gui.GridWindow;
+import Framework.Gui.GridWindow;
 
-import static HAL.Util.RGB;
+import static Framework.Util.RGB;
 
 public class PlotExample {
     public static void main(String[] args) {

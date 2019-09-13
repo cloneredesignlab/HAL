@@ -1,16 +1,11 @@
 package Testing;
 
-import HAL.Interfaces.VoidFunction;
-import HAL.Util;
+import Framework.Interfaces.VoidFunction;
+import Framework.Util;
 
 import java.util.ArrayList;
 
 public class UnitTester {
-
-
-//    public static double[] ConvergenceTester1D(){
-//    }
-
     ArrayList<VoidFunction> tests=new ArrayList<>();
     ArrayList<Boolean> passRecord=new ArrayList<>();
     ArrayList<String> names=new ArrayList<>();
@@ -20,12 +15,13 @@ public class UnitTester {
         this.names.add(name);
         this.tests.add(Test);
         this.passRecord.add(true);
+        this.runTimes.add(0L);
     }
     public void RunTests(final boolean timeit){
         Util.MultiThread(tests.size(),(i)->{
             long startTime=0;
             if(timeit){
-                startTime=System.nanoTime();
+                startTime=System.currentTimeMillis();
             }
             try{
                 tests.get(i).Execute();
@@ -36,7 +32,7 @@ public class UnitTester {
                 passRecord.set(i,false);
             }
             if(timeit) {
-                runTimes.add(System.nanoTime() - startTime);
+                runTimes.add(System.currentTimeMillis() - startTime);
             }
         });
         int failed=0;
@@ -67,6 +63,7 @@ public class UnitTester {
             throw new IllegalStateException("Assertion "+assertID+" failed! experimental value: "+experimentalValue+" does not equal correct value: "+correctValue);
         }
     }
+
 
     public static void AssertEqual(String assertID,long correctValue,long experimentalValue){
         if(correctValue!=experimentalValue){

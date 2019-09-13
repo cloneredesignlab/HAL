@@ -1,7 +1,7 @@
 package Testing.OldTests;
 
-import HAL.Rand;
-import HAL.Util;
+import Framework.Rand;
+import Framework.Util;
 
 /**
  * Created by rafael on 7/23/17.

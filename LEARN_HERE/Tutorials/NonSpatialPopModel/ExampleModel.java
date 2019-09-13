@@ -1,7 +1,7 @@
 package LEARN_HERE.Tutorials.NonSpatialPopModel;
 
-import HAL.Rand;
-import HAL.Util;
+import Framework.Rand;
+import Framework.Util;
 
 public class ExampleModel {
     long[]pops;

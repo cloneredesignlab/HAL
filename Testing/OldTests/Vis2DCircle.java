@@ -1,10 +1,10 @@
 package Testing.OldTests;
 
-import HAL.Gui.OpenGL2DWindow;
-import HAL.Gui.TickTimer;
-import HAL.Util;
+import Framework.Gui.OpenGL2DWindow;
+import Framework.Gui.TickTimer;
+import Framework.Util;
 
-import static HAL.Util.RGB;
+import static Framework.Util.RGB;
 
 /**
  * Created by rafael on 5/29/17.

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="HalColorSchemes1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/production/HAL/HalColorSchemes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

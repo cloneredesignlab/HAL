@@ -1,7 +1,7 @@
 package LEARN_HERE.Diffusbiles;
 
-import HAL.GridsAndAgents.PDEGrid2D;
-import HAL.Gui.UIGrid;
+import Framework.GridsAndAgents.PDEGrid2D;
+import Framework.Gui.UIGrid;
 
 /**
  * Created by Rafael on 10/29/2017.

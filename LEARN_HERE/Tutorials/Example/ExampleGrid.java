@@ -1,16 +1,16 @@
 package LEARN_HERE.Tutorials.Example;
 
-import HAL.GridsAndAgents.AgentGrid2D;
-import HAL.GridsAndAgents.SphericalAgent2D;
-import HAL.Gui.OpenGL2DWindow;
-import HAL.Rand;
-import HAL.Util;
+import Framework.GridsAndAgents.AgentGrid2D;
+import Framework.GridsAndAgents.SphericalAgent2D;
+import Framework.Gui.OpenGL2DWindow;
+import Framework.Rand;
+import Framework.Util;
 
 class ExampleCell extends SphericalAgent2D<ExampleCell,ExampleGrid> {
     int color;
 
     public void Init(){
-        super.DefaultInit(0.2);
+        super.Init(0.2);
         this.color=Util.RGB(G.rng.Double(), G.rng.Double(), G.rng.Double());
     }
 

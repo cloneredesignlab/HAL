@@ -1,11 +1,12 @@
 package Examples.GameOfLife;
-import HAL.Rand;
-import HAL.Tools.FileIO;
-import HAL.Util;
+import Framework.Rand;
+import Framework.Tools.FileIO;
+import Framework.Util;
 
 import java.util.ArrayList;
+import java.util.Random;
 
-import static HAL.Util.*;
+import static Framework.Util.*;
 
 /**
  * Created by mark on 7/7/17.

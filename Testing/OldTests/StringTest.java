@@ -1,9 +1,9 @@
 package Testing.OldTests;
 
-import HAL.Gui.GridWindow;
+import Framework.Gui.GridWindow;
 
-import static HAL.Util.BLACK;
-import static HAL.Util.WHITE;
+import static Framework.Util.BLACK;
+import static Framework.Util.WHITE;
 
 public class StringTest {
     public static void main(String[] args) {
