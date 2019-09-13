@@ -4,6 +4,12 @@
     <list default="true" id="f87e106a-bc6a-4b51-a3ba-2fda9d1aabe0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HAL/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HAL/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HAL/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HAL/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../jupyter/.ipynb_checkpoints/ABC4PloidyEnergyModel-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../../jupyter/.ipynb_checkpoints/ABC4PloidyEnergyModel-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../jupyter/.ipynb_checkpoints/CLONEID_applicationExample-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../../jupyter/.ipynb_checkpoints/CLONEID_applicationExample-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../jupyter/ABC4PloidyEnergyModel.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../../jupyter/ABC4PloidyEnergyModel.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../jupyter/CLONEID_applicationExample.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../../jupyter/CLONEID_applicationExample.ipynb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,7 +18,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1On77M1cQ5TB1i1MSprLMAinbaV" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
