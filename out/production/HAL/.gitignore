@@ -9,3 +9,9 @@
 #!manual.pdf
 #!FrameworkPresentation.pdf
 .DS_Store
+#*.class
+commons-math*
+out/production/HAL/.idea/libraries/commons_math*
+.idea/artifacts/HAL_jar.xml
+.idea/libraries/commons_math3_3_5.xml
+Framework/lib/commons-math*

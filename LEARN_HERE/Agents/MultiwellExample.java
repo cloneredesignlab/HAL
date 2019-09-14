@@ -21,7 +21,7 @@ public class MultiwellExample{
             model.Setup(2);
         }
         MultiWellExperiment<BirthDeath> expt=new MultiWellExperiment<BirthDeath>(3,2,models,x,y, 5,
-                WHITE, MultiwellExample::StepModel,MultiwellExample::DrawModel);
+                WHITE, MultiwellExample::StepModel,MultiwellExample::DrawModel, false );
         //USE THE S KEY TO SAVE THE STATE, AND THE L KEY TO LOAD THE STATE
         expt.Run(200,false,100);
     }

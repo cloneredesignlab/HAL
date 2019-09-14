@@ -10,8 +10,8 @@ import Framework.Tools.MultiWellExperiment.MultiWellExperiment;
 import Framework.Tools.PhylogenyTracker.Genome;
 import Framework.Tools.PhylogenyTracker.GenomeFn;
 import Framework.Util;
-import org.apache.commons.math3.stat.correlation.PearsonsCorrelation;
 
+import java.io.FileReader;
 import java.util.*;
 
 import static Framework.Util.HeatMapRGB;
@@ -85,7 +85,6 @@ class CellEx extends AgentSQ2Dunstackable<GrowOrGo_PloidyEnergy> {
 
         int iNewLoc = G.hood[G.rn.Int(nOpts)];
         if (G.gradientMovement) {
-            PearsonsCorrelation corr = new PearsonsCorrelation();
 
             int x = G.ItoX(Isq());
             int y = G.ItoY(Isq());
@@ -97,7 +96,7 @@ class CellEx extends AgentSQ2Dunstackable<GrowOrGo_PloidyEnergy> {
                 x = G.ItoX(G.hood[i]);
                 y = G.ItoY(G.hood[i]);
                 double[] grXY_ = new double[]{G.energy.GradientX(x, y), G.energy.GradientY(x, y)};
-                corcoef[i] = corr.correlation(grXY, grXY_);
+                corcoef[i] = correlation(grXY, grXY_);
                 if (corcoef[i].equals(Double.NaN)) {
                     corcoef[i] = 0.0;
                 }
@@ -149,6 +148,39 @@ class CellEx extends AgentSQ2Dunstackable<GrowOrGo_PloidyEnergy> {
             Divide(nOpts);
         }
     }
+
+    //@TODO: move to utils
+    public static double correlation(double[] xs, double[] ys) {
+        double sx = 0.0;
+        double sy = 0.0;
+        double sxx = 0.0;
+        double syy = 0.0;
+        double sxy = 0.0;
+
+        int n = xs.length;
+
+        for (int i = 0; i < n; ++i) {
+            double x = xs[i];
+            double y = ys[i];
+
+            sx += x;
+            sy += y;
+            sxx += x * x;
+            syy += y * y;
+            sxy += x * y;
+        }
+
+        // covariation
+        double cov = sxy / n - sx * sy / n / n;
+        // standard error of x
+        double sigmax = Math.sqrt(sxx / n - sx * sx / n / n);
+        // standard error of y
+        double sigmay = Math.sqrt(syy / n - sy * sy / n / n);
+
+        // correlation is just a normalized covariation
+        return cov / sigmax / sigmay;
+    }
+
 }
 
 public class GrowOrGo_PloidyEnergy extends AgentGrid2D<CellEx> {
@@ -184,17 +216,37 @@ public class GrowOrGo_PloidyEnergy extends AgentGrid2D<CellEx> {
     }
 
 
+    public GrowOrGo_PloidyEnergy(int x, int y, Map<String, String> argmap) {
+        super(x, y, CellEx.class);
+        this.priority_grow = Boolean.parseBoolean(argmap.get("priority_grow"));
+        this.gradientMovement = Boolean.parseBoolean(argmap.get("gradientMovement"));
+        this.DIE_PROB = Double.parseDouble(argmap.get("DIE_PROB"));
+        this.MUT_PROB = Double.parseDouble(argmap.get("MUT_PROB"));
+        this.MIG_PROB = Double.parseDouble(argmap.get("MIG_PROB"));
+        this.MUT_ADVANTAGE = Double.parseDouble(argmap.get("MUT_ADVANTAGE"));
+        PLOIDY = Double.parseDouble(argmap.get("PLOIDY"));
+        this.DIFFUSION_RATE = Double.parseDouble(argmap.get("DIFFUSION_RATE"));
+        energy = new PDEGrid2D(x, y);
+        energy.SetAll(Double.parseDouble(argmap.get("energy")));
+        energy.Update();
+        this.priority_grow = Boolean.parseBoolean(argmap.get("priority_grow"));
+        this.gradientMovement = Boolean.parseBoolean(argmap.get("gradientMovement"));
+    }
+
+
     public GrowOrGo_PloidyEnergy(int x, int y, boolean priority_grow, boolean gradientMovement, double energyVal, String outputPrefix) {
         super(x, y, CellEx.class);
         this.priority_grow = priority_grow;
         this.gradientMovement = gradientMovement;
         if (outputPrefix != null) {
-            String prfx = outputPrefix+"priority_grow-" + priority_grow + "_energy" + energyVal;
-            outputFile = new FileIO( prfx + ".out", "w");
+            String prfx = outputPrefix; // + "_priority_grow-" + priority_grow + "_energy" + energyVal;
+            outputFile = new FileIO(prfx + ".out", "w");
             paramFile = new FileIO(prfx + ".param", "w");
 
+            paramFile.Write("x\t" + x + "\n");
+            paramFile.Write("y\t" + y + "\n");
             paramFile.Write("DIV_PROB\t" + DIV_PROB + "\n");
-            paramFile.Write("MUT_PROB \t" + MUT_PROB + "\n");
+            paramFile.Write("MUT_PROB\t" + MUT_PROB + "\n");
             paramFile.Write("DIE_PROB\t" + DIE_PROB + "\n");
             paramFile.Write("MIG_PROB\t" + MIG_PROB + "\n");
             paramFile.Write("MUT_ADVANTAGE\t" + MUT_ADVANTAGE + "\n");
@@ -202,7 +254,7 @@ public class GrowOrGo_PloidyEnergy extends AgentGrid2D<CellEx> {
             paramFile.Write("DIFFUSION_RATE\t" + DIFFUSION_RATE + "\n");
             paramFile.Write("energy\t" + energyVal + "\n");
             paramFile.Write("priority_grow\t" + priority_grow + "\n");
-            paramFile.Write("gradientMovement\t" + gradientMovement );
+            paramFile.Write("gradientMovement\t" + gradientMovement);
             paramFile.Close();
         }
         energy = new PDEGrid2D(x, y);
@@ -254,6 +306,28 @@ public class GrowOrGo_PloidyEnergy extends AgentGrid2D<CellEx> {
     }
 
 
+    public static void mainShowSimulation(String paramFile) {
+
+        ArrayList<String> lines = new FileIO(paramFile, "r").Read();
+        Map<String, String> argmap = new HashMap<String, String>();
+
+        for (String l : lines) {
+            String[] kv = l.split("\t");
+            argmap.put(kv[0], kv[1]);
+        }
+
+        int x = Integer.parseInt(argmap.get("x"));
+        int y = Integer.parseInt(argmap.get("y"));
+        GrowOrGo_PloidyEnergy[] model = new GrowOrGo_PloidyEnergy[]{new GrowOrGo_PloidyEnergy(x, y, argmap)};
+        model[0].InitTumor(4);
+
+        MultiWellExperiment<GrowOrGo_PloidyEnergy> expt = new MultiWellExperiment<GrowOrGo_PloidyEnergy>(1, 1, model, x, y,
+                5, WHITE, GrowOrGo_PloidyEnergy::StepModel, GrowOrGo_PloidyEnergy::DrawModel, true);
+        expt.RunGIF(50, paramFile + ".gif", 2, false);
+//        expt.Run(50, false, 100);
+    }
+
+
     public static void mainRunSimulations(int count, double eMin, double eMax, double by, String outDir) {
         int x = 70, y = 70, scaleFactor = 5;
         double[] energies = new double[(int) Math.round((eMax - eMin) / by)];
@@ -261,6 +335,7 @@ public class GrowOrGo_PloidyEnergy extends AgentGrid2D<CellEx> {
             energies[i] = eMin + by * i;
         }
 
+        int sim = 0;
         for (int n = 0; n < count; n++) {
             ////////////////////////
             ////Generate models////
@@ -274,8 +349,9 @@ public class GrowOrGo_PloidyEnergy extends AgentGrid2D<CellEx> {
                     lab = "no";
                     priority_grow = false;
                 }
+                sim++; //Count this particular simulation
                 models[i] = new GrowOrGo_PloidyEnergy(x, y, priority_grow, true, energies[i], outDir +
-                        System.getProperty("file.separator") + "sim"+ count+"_" );
+                        System.getProperty("file.separator") + "sim" + sim );
             }
 
             ////////////////////////
@@ -285,7 +361,7 @@ public class GrowOrGo_PloidyEnergy extends AgentGrid2D<CellEx> {
                 models[i].InitTumor(4);
             }
             MultiWellExperiment<GrowOrGo_PloidyEnergy> expt = new MultiWellExperiment<GrowOrGo_PloidyEnergy>(6, 2, models, x, y,
-                    scaleFactor, WHITE, GrowOrGo_PloidyEnergy::StepModel, GrowOrGo_PloidyEnergy::DrawModel);
+                    scaleFactor, WHITE, GrowOrGo_PloidyEnergy::StepModel, GrowOrGo_PloidyEnergy::DrawModel, false);
             expt.Run(50, false, 100);
 
 
@@ -299,37 +375,39 @@ public class GrowOrGo_PloidyEnergy extends AgentGrid2D<CellEx> {
                 }
                 grid.outputFile.Close();
 
-//      //Phylogeny
-//      //            @TODO: write output in Newick format
-//      System.out.println("priority_grow: "+grid.priority_grow);
-//      CopyNumber root = (CopyNumber) grid.AllAgents().iterator().next().copy_number.GetRoot();
-//      String[] header =new String[22+3];
-//      Arrays.fill(header, 0, 22, "chr");
-//      header[22] = "BirthDate";
-//      header[23] = "PopSize";
-//      header[24] = "AliveSize";
-//      grid.outputFile.Write(Util.ArrToString(header,"\t")+"\n");
-//      root.Traverse(new GenomeFn() {
-//        @Override
-//        public void GenomeFn(Genome c) {
-//          grid.outputFile.Write(Util.ArrToString(((CopyNumber) c).cn_vals, "\t") + "\t" + c.GetId() +"\t"+c.GetNumGenomes()+"\t"+c.GetPop()+"\n");
-//        }
-//      });
-//      grid.outputFile.Close();
+////      //Phylogeny @TODO: write output in Newick format
+//                CopyNumber root = (CopyNumber) grid.AllAgents().iterator().next().copy_number.GetRoot();
+//                String[] header = new String[22 + 3];
+//                Arrays.fill(header, 0, 22, "chr");
+//                header[22] = "BirthDate";
+//                header[23] = "PopSize";
+//                header[24] = "AliveSize";
+//                grid.outputFile.Write(Util.ArrToString(header, "\t") + "\n");
+//                root.Traverse(new GenomeFn() {
+//                    @Override
+//                    public void GenomeFn(Genome c) {
+//                        grid.outputFile.Write(Util.ArrToString(((CopyNumber) c).cn_vals, "\t") + "\t" + c.GetId() + "\t" + c.GetNumGenomes() + "\t" + c.GetPop() + "\n");
+//                    }
+//                });
+//                grid.outputFile.Close();
             }
         }
     }
 
     public static void main(String[] args) {
-        Map<String, String> argmap=new HashMap<String, String>();
-                for(String arg: args){
-                    String[] kv = arg.split(":");
-                    argmap.put(kv[0], kv[1]);
-                }
-//        mainRunSimulations(1, 200, 950, 75, "/Users/4470246/Downloads");
-//                count:1 eMin:200 eMax:950 by:75 outDir:"/Users/4470246/Downloads"
+        Map<String, String> argmap = new HashMap<String, String>();
+        for (String arg : args) {
+            String[] kv = arg.split(":");
+            argmap.put(kv[0], kv[1]);
+        }
+
+//                count:1 eMin:200 eMax:950 by:75 outDir:/Users/4470246/Downloads
         mainRunSimulations(Integer.parseInt(argmap.get("count")), Double.parseDouble(argmap.get("eMin")), Double.parseDouble(argmap.get("eMax")),
                 Double.parseDouble(argmap.get("by")), argmap.get("outDir"));
+
+
+//        //sim6_priority_grow-true_energy875.0.param
+//        mainShowSimulation(args[0]);
     }
 
 }

@@ -30,7 +30,7 @@ public class MultiWellExperiment <T> {
      * argument for one timestep. ColorFn is a function argument that takes a model, x, and y, and is used to set one
      * pixel of the visualization.
      */
-    public MultiWellExperiment(int numWellsX, int numWellsY, T[] models, int visXdim, int visYdim, int scaleFactor, int borderColor, StepWell<T> StepFn, DrawWell<T> ColorFn) {
+    public MultiWellExperiment(int numWellsX, int numWellsY, T[] models, int visXdim, int visYdim, int scaleFactor, int borderColor, StepWell<T> StepFn, DrawWell<T> ColorFn, boolean active) {
         this.visYdim = visYdim;
         this.visXdim = visXdim;
         this.wellsX = numWellsX;
@@ -43,7 +43,7 @@ public class MultiWellExperiment <T> {
             throw new IllegalArgumentException("model models passed than can be displayed, max: " + numWellsX * numWellsY + " passed: " + models.length);
         }
         SetWellStarts();
-        win = new GridWindow("MultiWell", visXdim * numWellsX + numWellsX - 1, visYdim * numWellsY + numWellsY - 1, scaleFactor, true);
+        win = new GridWindow("MultiWell", visXdim * numWellsX + numWellsX - 1, visYdim * numWellsY + numWellsY - 1, scaleFactor, active);
         win.Clear(borderColor);
     }
 
